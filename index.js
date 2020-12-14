@@ -15,7 +15,8 @@ Go code!
 
 const express = require("express")
 const cors = require("cors")
-
+const projectRouter = require("./api/projects/projects-router")
+const actionsRouter = require("./api/actions/actions-router")
 
 const server = express()
 const port = 3000
@@ -23,6 +24,8 @@ const port = 3000
 server.use(express.json())
 server.use(cors())
 
+server.use("/projects", projectRouter)
+server.use("/actions", actionsRouter)
 
 server.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`)
