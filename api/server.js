@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require("cors")
-const projectRouter = require("./api/projects/projects-router")
-const actionsRouter = require("./api/actions/actions-router")
+const projectRouter = require("./projects/projects-router")
+const actionsRouter = require("./actions/actions-router")
 
 const server = express();
 
@@ -11,7 +11,7 @@ server.use(cors())
 server.use("/projects", projectRouter)
 server.use("/actions", actionsRouter)
 
-server.use((err, req, res, next) => {
+server.use((err, req, res) => {
     console.log(err)
     res.status(500).json({
         message: "Error"
@@ -19,7 +19,9 @@ server.use((err, req, res, next) => {
   })
   
 server.get('/', (req, res) => {
-    res.send(`<h2>Welcome to our projects API</h2>`);
+    res.status(200).json({
+        message: 'Welcome to our Projects API'
+    })
   });
   
 
