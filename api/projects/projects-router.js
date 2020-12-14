@@ -45,6 +45,19 @@ router.post("/", (req, res) => {
         })
       })
   })
+
+  router.get("/:id/actions", (req, res) => {
+    projectsModel.getProjectActions(req.params.id)
+      .then((project) => {
+        res.status(200).json(project)
+      })
+      .catch((error) => {
+        console.log(error)
+        res.status(404).json({
+          message: "No actions for this project",
+        })
+      })
+  })
   
   router.delete("/:id", (req, res) => {
     projectsModel.remove(req.params.id)
